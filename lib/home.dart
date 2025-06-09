@@ -49,27 +49,36 @@ class _HomeState extends State<Home> {
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                ShaderMask(
-                  shaderCallback: (Rect bounds) {
-                    return ImageShader(
-                      AssetImage('assets/images/bottle.png').resolve(ImageConfiguration()),
-                      TileMode.clamp,
-                      TileMode.clamp,
-                      Matrix4.identity().storage,
-                    );
-                  },
-                  blendMode: BlendMode.srcATop,
-                  child: Container(
-                    width: 150,
-                    height: 400 * (_currentValue / _maxValue),
-                    color: Colors.blue[100],
+                ClipRect(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    heightFactor: _fillPercent,
+                    child: Image.asset(
+                      'assets/images/bottle_full.png',
+                      width: 150,
+                      height: 400,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
                 Image.asset(
                   'assets/images/bottle.png',
                   width: 150,
                   height: 400,
-                )
+                  fit: BoxFit.fill,
+                ),
+                Positioned.fill(
+                  child: Center(
+                    child: Text(
+                      "${_currentValue.round().toString()}/${_maxValue.round().toString()}",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 20),
