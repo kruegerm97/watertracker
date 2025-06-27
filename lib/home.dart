@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watertracker/calendar.dart';
+import 'package:watertracker/login.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -31,6 +32,14 @@ class _HomeState extends State<Home> {
         title: Text('My Watertracker'),
         backgroundColor: Colors.blue[400],
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => Login(),
+            ));
+          }, 
+          icon: Icon(Icons.login)
+          ),
         actions: [
           IconButton(
             icon: Icon(Icons.calendar_today),
